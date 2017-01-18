@@ -6,10 +6,30 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\sprite0</sprite>
+    <sprites name="Death">
+      <sprites name="Visible">
+        <sprite>sprites\Death_uattack</sprite>
+        <sprite>sprites\Death_dattack</sprite>
+        <sprite>sprites\Death_fattack</sprite>
+        <sprite>sprites\Death_noscytheattack</sprite>
+        <sprite>sprites\Death_nattack</sprite>
+        <sprite>sprites\Death_idlewithscythe</sprite>
+        <sprite>sprites\Death_idlenoscythe</sprite>
+        <sprite>sprites\Death_hitstunwithscythe</sprite>
+        <sprite>sprites\Death_hitstunwithoutscythe</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_test.gml</script>
+  </scripts>
+  <shaders name="shaders"/>
+  <objects name="objects">
+    <object>objects\Player</object>
+    <object>objects\Player1</object>
+  </objects>
   <help>
     <rtf>help.rtf</rtf>
   </help>

@@ -28,7 +28,6 @@
   <objects name="objects">
     <object>objects\Player</object>
     <object>objects\Player1</object>
-    <object>objects\obj_player</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

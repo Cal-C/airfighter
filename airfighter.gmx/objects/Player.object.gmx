@@ -50,7 +50,7 @@ state = 1; //1idle 2atacking 3hitstun
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Alma is best girl
+            <string>///Stella best girl** FTFY Cal
 //MOVEMENT KEYBINDS--------------------------------------------------------------------------------------------------
 if (state == 1){ // checking state so if charachter is atacking or in hitstun they cant move
     if keyboard_check(leftkey) //move left
@@ -89,13 +89,18 @@ speed = max(speed - 0.05, 0); //Add decelleration to player
 if(state == 1 &amp; keyboard_check_pressed(basicattackkey)){
     state = 2
     image_speed = 1/3;
-    
+    if state == 2
+    {
+        speed = max(speed - 2, 0);
+    }
     if(keyboard_check(rightkey)){
         sprite_index = Death_fattack;
+        speed = 10; //DAAAAAASH like a fast boii
     }
     
     if(keyboard_check(leftkey)){
         sprite_index = Death_fattack;
+        speed = 10; //DAAAAAASH like a fast boii
     }
     if(keyboard_check(upkey)){
         sprite_index = Death_uattack;

@@ -17,6 +17,8 @@
         <sprite>sprites\Death_idlenoscythe</sprite>
         <sprite>sprites\Death_hitstunwithscythe</sprite>
         <sprite>sprites\Death_hitstunwithoutscythe</sprite>
+        <sprite>sprites\Death_dashwscythe</sprite>
+        <sprite>sprites\Death_dashwoscythe</sprite>
       </sprites>
     </sprites>
     <sprites name="Heavy_Arty">

@@ -50,7 +50,7 @@ state = 1; //1-idle 2-attacking 3-hitstun
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Stella best girl** FTFY Cal
+            <string>///Oku's stand is the only girl we're getting either way
 //MOVEMENT KEYBINDS--------------------------------------------------------------------------------------------------
 if (state == 1){ // checking state so if character is attacking or in hitstun they cant move
     if keyboard_check(leftkey) //move left
@@ -95,12 +95,12 @@ if(state == 1 &amp; keyboard_check_pressed(basicattackkey)){
     }
     if(keyboard_check(rightkey)){
         sprite_index = Death_fattack;
-        speed = 10; //DAAAAAASH like a fast boii
+        //speed = 10; //DAAAAAASH like a fast boii
     }
     
     if(keyboard_check(leftkey)){
         sprite_index = Death_fattack;
-        speed = 10; //DAAAAAASH like a fast boii
+        //speed = 10; //DAAAAAASH like a fast boii
     }
     if(keyboard_check(upkey)){
         sprite_index = Death_uattack;

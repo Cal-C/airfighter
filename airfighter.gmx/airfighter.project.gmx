@@ -19,6 +19,13 @@
         <sprite>sprites\Death_hitstunwithoutscythe</sprite>
       </sprites>
     </sprites>
+    <sprites name="Heavy_Arty">
+      <sprites name="Visible">
+        <sprite>sprites\HevArty_Idle</sprite>
+        <sprite>sprites\HevArty_Move</sprite>
+        <sprite>sprites\HevArty_fattack</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -28,6 +35,7 @@
   <objects name="objects">
     <object>objects\Player</object>
     <object>objects\Player1</object>
+    <object>objects\Player2</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

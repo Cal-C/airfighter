@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>character = 1; //1Death 
-state = 1; //1idle 2atacking 3hitstun
+            <string>character = 1; //1-Death 
+state = 1; //1-idle 2-attacking 3-hitstun
 
 </string>
           </argument>
@@ -52,7 +52,7 @@ state = 1; //1idle 2atacking 3hitstun
             <kind>1</kind>
             <string>///Stella best girl** FTFY Cal
 //MOVEMENT KEYBINDS--------------------------------------------------------------------------------------------------
-if (state == 1){ // checking state so if charachter is atacking or in hitstun they cant move
+if (state == 1){ // checking state so if character is attacking or in hitstun they cant move
     if keyboard_check(leftkey) //move left
     {
         image_xscale = -1;
@@ -61,7 +61,7 @@ if (state == 1){ // checking state so if charachter is atacking or in hitstun th
         sprite_index = Death_idlewithscythe;
     }
     
-    if keyboard_check(rightkey) // move right
+    if keyboard_check(rightkey) //move right
     {
         image_xscale = 1;
         motion_add(0, 0.5);

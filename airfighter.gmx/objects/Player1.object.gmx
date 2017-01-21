@@ -33,6 +33,8 @@ basicattackkey = ord("Z");
 dashkey = ord("X");
 specialkey = ord("C");
 parrykey = ord("V");
+character = 1;
+event_inherited()
 </string>
           </argument>
         </arguments>

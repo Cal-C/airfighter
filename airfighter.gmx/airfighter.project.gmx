@@ -26,6 +26,7 @@
         <sprite>sprites\HevArty_Idle</sprite>
         <sprite>sprites\HevArty_Move</sprite>
         <sprite>sprites\HevArty_fattack</sprite>
+        <sprite>sprites\HevArty_fattackHB</sprite>
       </sprites>
     </sprites>
   </sprites>
@@ -38,6 +39,7 @@
     <object>objects\Player</object>
     <object>objects\Player1</object>
     <object>objects\Player2</object>
+    <object>objects\obj_hitbox</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

@@ -157,7 +157,7 @@ else{
     loopanimation = false;
 }
 
-//HitboxTimeMyDudez
+//HitboxTimeMyDudez---------------------------------------------------------------------
 hitboxobject.x = x;
 hitboxobject.y = y;
 hitboxobject.image_xscale = image_xscale;
@@ -172,6 +172,23 @@ if(state == 2){
     }
 
 
+}
+//HURTBOXES niBBA---------------------------------------------------------
+hurtboxobject.x = x;
+hurtboxobject.y = y;
+hurtboxobject.image_xscale = image_xscale;
+if(state == 1)
+{
+    if(character == 1)
+    {
+        with Player1_hurtboxes
+        {
+            if place_meeting(x,y,Player2_hitboxes) == true
+            {
+                sprite_index = Death_hitstunwithscythe;
+            }
+        }
+    }
 }
 
 

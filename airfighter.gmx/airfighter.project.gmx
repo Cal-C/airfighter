@@ -15,6 +15,7 @@
         <sprite>sprites\Death_noscytheattack</sprite>
         <sprite>sprites\Death_nattack</sprite>
         <sprite>sprites\Death_idlewithscythe</sprite>
+        <sprite>sprites\Death_idlewscytheHurtBx</sprite>
         <sprite>sprites\Death_idlenoscythe</sprite>
         <sprite>sprites\Death_hitstunwithscythe</sprite>
         <sprite>sprites\Death_hitstunwithoutscythe</sprite>
@@ -45,6 +46,8 @@
     <object>objects\Player2</object>
     <object>objects\Player2_hitboxes</object>
     <object>objects\Player1_hitboxes</object>
+    <object>objects\Player1_hurtboxes</object>
+    <object>objects\Player2_hurtboxes</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

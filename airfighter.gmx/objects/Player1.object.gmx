@@ -35,6 +35,7 @@ specialkey = ord("C");
 parrykey = ord("V");
 character = 1;
 hitboxobject = instance_create(x,y, Player1_hitboxes);
+hurtboxobject = instance_create(x,y,Player1_hurtboxes);
 event_inherited()
 </string>
           </argument>

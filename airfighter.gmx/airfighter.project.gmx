@@ -6,6 +6,7 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprite>sprites\nothingsprite</sprite>
     <sprites name="Death">
       <sprites name="Visible">
         <sprite>sprites\Death_uattack</sprite>
@@ -26,6 +27,8 @@
         <sprite>sprites\HevArty_Idle</sprite>
         <sprite>sprites\HevArty_Move</sprite>
         <sprite>sprites\HevArty_fattack</sprite>
+      </sprites>
+      <sprites name="invisible">
         <sprite>sprites\HevArty_fattackHB</sprite>
       </sprites>
     </sprites>
@@ -38,8 +41,10 @@
   <objects name="objects">
     <object>objects\Player</object>
     <object>objects\Player1</object>
+    <object>objects\hitboxes</object>
     <object>objects\Player2</object>
-    <object>objects\obj_hitbox</object>
+    <object>objects\Player2_hitboxes</object>
+    <object>objects\Player1_hitboxes</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

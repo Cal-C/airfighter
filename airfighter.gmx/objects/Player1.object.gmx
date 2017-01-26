@@ -34,6 +34,7 @@ dashkey = ord("X");
 specialkey = ord("C");
 parrykey = ord("V");
 character = 1;
+hitboxobject = instance_create(x,y, Player1_hitboxes);
 event_inherited()
 </string>
           </argument>

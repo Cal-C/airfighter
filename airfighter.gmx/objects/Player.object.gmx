@@ -146,18 +146,7 @@ if(character == 2){
         if(!keyboard_check(upkey) &amp;&amp; !keyboard_check(downkey) &amp;&amp; !keyboard_check(leftkey) &amp;&amp; !keyboard_check(rightkey)){
             //sprite_index = Death_nattack;
         }
-    //Attack Hitbox -----TEST-----
-        if (image_index &gt;= 0) &amp;&amp; (image_index &lt;= 2) &amp;&amp; (sprite_index = HevArty_fattack) &amp;&amp; (keyboard_check(basicattackkey))
-        {
-            with(instance_create(x,y,obj_hitbox))//creates hitbox
-                {
-                    image_xscale = other.image_xscale;
-                }
-        }
-    
-     
-    }
-    
+    }   
 }
 
 //makes ora loop if atack key is held
@@ -167,6 +156,26 @@ if(sprite_index == HevArty_fattack &amp;&amp; keyboard_check(basicattackkey)){
 else{
     loopanimation = false;
 }
+
+//HitboxTimeMyDudez
+hitboxobject.x = x;
+hitboxobject.y = y;
+hitboxobject.image_xscale = image_xscale;
+if(state == 1){
+    hitboxobject.sprite_index = nothingsprite;
+}
+if(state == 2){
+    if(character == 2){
+        if(sprite_index == HevArty_fattack){
+            hitboxobject.sprite_index = HevArty_fattackHB;
+        }
+    }
+
+
+}
+
+
+
 
 
 

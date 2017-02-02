@@ -15,12 +15,14 @@
         <sprite>sprites\Death_noscytheattack</sprite>
         <sprite>sprites\Death_nattack</sprite>
         <sprite>sprites\Death_idlewithscythe</sprite>
-        <sprite>sprites\Death_idlewscytheHurtBx</sprite>
         <sprite>sprites\Death_idlenoscythe</sprite>
         <sprite>sprites\Death_hitstunwithscythe</sprite>
         <sprite>sprites\Death_hitstunwithoutscythe</sprite>
         <sprite>sprites\Death_dashwscythe</sprite>
         <sprite>sprites\Death_dashwoscythe</sprite>
+      </sprites>
+      <sprites name="invisible">
+        <sprite>sprites\Death_idlewscytheHurtBx</sprite>
       </sprites>
     </sprites>
     <sprites name="Heavy_Arty">
@@ -44,6 +46,7 @@
     <object>objects\Player1</object>
     <object>objects\hitboxes</object>
     <object>objects\Player2</object>
+    <object>objects\hurtboxes</object>
     <object>objects\Player2_hitboxes</object>
     <object>objects\Player1_hitboxes</object>
     <object>objects\Player1_hurtboxes</object>

@@ -36,6 +36,7 @@
         <sprite>sprites\HevArty_fattackHB</sprite>
       </sprites>
     </sprites>
+    <sprite>sprites\healthpointer</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -52,6 +53,7 @@
     <object>objects\Player1_hitboxes</object>
     <object>objects\Player1_hurtboxes</object>
     <object>objects\Player2_hurtboxes</object>
+    <object>objects\healthbar</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

@@ -36,6 +36,9 @@ parrykey = ord("V");
 character = 1;
 hitboxobject = instance_create(x,y, Player1_hitboxes);
 hurtboxobject = instance_create(x,y,Player1_hurtboxes);
+hitboxobject.player = self;
+hurtboxobject.player = self;
+healthmulti = 1;
 event_inherited();
 </string>
           </argument>

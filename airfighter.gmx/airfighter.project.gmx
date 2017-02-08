@@ -30,6 +30,7 @@
         <sprite>sprites\HevArty_Idle</sprite>
         <sprite>sprites\HevArty_Move</sprite>
         <sprite>sprites\HevArty_fattack</sprite>
+        <sprite>sprites\HevArty_nattack</sprite>
       </sprites>
       <sprites name="invisible">
         <sprite>sprites\HevArty_fattackHB</sprite>

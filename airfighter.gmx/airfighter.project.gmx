@@ -31,6 +31,7 @@
         <sprite>sprites\HevArty_Move</sprite>
         <sprite>sprites\HevArty_fattack</sprite>
         <sprite>sprites\HevArty_nattack</sprite>
+        <sprite>sprites\HevArty_fattack_FIX</sprite>
       </sprites>
       <sprites name="invisible">
         <sprite>sprites\HevArty_fattackHB</sprite>

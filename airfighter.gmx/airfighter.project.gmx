@@ -55,6 +55,7 @@
     <object>objects\Player1_hurtboxes</object>
     <object>objects\Player2_hurtboxes</object>
     <object>objects\healthbar</object>
+    <object>objects\camera</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

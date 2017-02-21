@@ -29,9 +29,11 @@
       <sprites name="Visible">
         <sprite>sprites\HevArty_Idle</sprite>
         <sprite>sprites\HevArty_Move</sprite>
-        <sprite>sprites\HevArty_fattack</sprite>
         <sprite>sprites\HevArty_nattack</sprite>
-        <sprite>sprites\HevArty_fattack_FIX</sprite>
+        <sprite>sprites\HevArty_fattack</sprite>
+        <sprite>sprites\HevArty_uattack</sprite>
+        <sprite>sprites\HevArty_Dash</sprite>
+        <sprite>sprites\HevArty_dattack</sprite>
       </sprites>
       <sprites name="invisible">
         <sprite>sprites\HevArty_fattackHB</sprite>

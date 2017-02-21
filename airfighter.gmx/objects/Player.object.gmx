@@ -205,6 +205,7 @@ if(character == 2){
             //speed = 10; //DAAAAAASH like a fast boii
         }
         if(keyboard_check(upkey)){
+            sprite_index = HevArty_uattack;
             //sprite_index = Death_uattack;
         }
         if(keyboard_check(downkey)){
@@ -279,7 +280,7 @@ if(state == 2){
     }
 }
 
-//HURTBOXES B---------------------------------------------------------
+//HURTBOXES---------------------------------------------------------
 hurtboxobject.x = x;
 hurtboxobject.y = y;
 hurtboxobject.image_xscale = image_xscale;

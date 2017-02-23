@@ -118,11 +118,13 @@ if (state == 1){ // checking state so if character is attacking or in hitstun th
         }
     }
 }
+
 //Adding decelleration to player
 
 if(state == 1){ decell = .05; }
 if(state == 2){ decell = .1; }
 if(state == 3){ decell = 0; }
+if(state == 4){ decell = .05; }
 if(xspd &gt; 0){
     xspd = max(xspd - decell, 0); 
 }
@@ -141,17 +143,21 @@ if(yspd &lt; 0){
 if (state == 1){
     if( keyboard_check(dashkey) ){
         if character == 1{
+        sprite_index = Death_dashwscythe;
+        image_speed = 1/2;}
+        if character == 2{
+        sprite_index = HevArty_Dash;
+        image_speed = 1/3;}
             yaccel = yaccel*2;
             xaccel = xaccel*2;
             maxspeed = dashspeed;
             state = 3;
-            sprite_index = Death_dashwscythe;
-            image_speed = 1/2;
+            
+            
             //making it so the player dosen't move twice as fast when you're moving vertically and horizontally at the same time
             if(keyboard_check(downkey) or keyboard_check(upkey)){
                 if(keyboard_check(leftkey) or keyboard_check(rightkey)){
                     maxspeed = maxspeed*horzvertmovedebuf;
-                }
             }
         }
     }
@@ -168,12 +174,10 @@ if(character == 1){
 
         if(keyboard_check(rightkey)){
             sprite_index = Death_fattack;
-            //speed = 10; //DAAAAAASH like a fast boii
         }
         
         if(keyboard_check(leftkey)){
             sprite_index = Death_fattack;
-            //speed = 10; //DAAAAAASH like a fast boii
         }
         if(keyboard_check(upkey)){
             sprite_index = Death_uattack;
@@ -183,10 +187,12 @@ if(character == 1){
         }
         if(!keyboard_check(upkey) and !keyboard_check(downkey) &amp;&amp; !keyboard_check(leftkey) &amp;&amp; !keyboard_check(rightkey)){
             sprite_index = Death_nattack;
+            currentdmg = 20;
         }
     
     }   
 }
+
 if(character == 2){
     if(state == 1 &amp;&amp; keyboard_check_pressed(basicattackkey)){
         
@@ -195,21 +201,19 @@ if(character == 2){
             sprite_index = HevArty_fattack;
             if(state == 1){
             currentdmg = 10;}
-            //speed = 10; //DAAAAAASH like a fast boii
         }
         
         if(keyboard_check(leftkey)){
             sprite_index = HevArty_fattack;
             if(state == 1){
             currentdmg = 10;}
-            //speed = 10; //DAAAAAASH like a fast boii
         }
         if(keyboard_check(upkey)){
             sprite_index = HevArty_uattack;
-            //sprite_index = Death_uattack;
+
         }
         if(keyboard_check(downkey)){
-            //sprite_index = Death_dattack;
+            sprite_index = HevArty_dattack
         }
         if(!keyboard_check(upkey) &amp;&amp; !keyboard_check(downkey) &amp;&amp; !keyboard_check(leftkey) &amp;&amp; !keyboard_check(rightkey)){
             //sprite_index = Death_nattack;
@@ -226,7 +230,10 @@ else{
     loopanimation = false;
 }
 
-
+if(state == 2){
+    xaccel = 0;
+    yaccel = 0;
+}
 
 //updating pos
 xspd = xspd + xaccel;
@@ -276,6 +283,12 @@ if(state == 2){
     if(character == 2){
         if(sprite_index == HevArty_fattack){
             hitboxobject.sprite_index = HevArty_fattackHB;
+        }
+    }
+    if(character == 1){
+        if(sprite_index == Death_nattack){
+            hitboxobject.sprite_index = Death_nattackhb;
+            hitboxobject.image_speed = image_speed;
         }
     }
 }

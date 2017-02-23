@@ -14,6 +14,7 @@
         <sprite>sprites\Death_fattack</sprite>
         <sprite>sprites\Death_noscytheattack</sprite>
         <sprite>sprites\Death_nattack</sprite>
+        <sprite>sprites\Death_nattackhb</sprite>
         <sprite>sprites\Death_idlewithscythe</sprite>
         <sprite>sprites\Death_idlenoscythe</sprite>
         <sprite>sprites\Death_hitstunwithscythe</sprite>
@@ -36,6 +37,7 @@
         <sprite>sprites\HevArty_dattack</sprite>
       </sprites>
       <sprites name="invisible">
+        <sprite>sprites\HevArty_idlehurt</sprite>
         <sprite>sprites\HevArty_fattackHB</sprite>
       </sprites>
     </sprites>
@@ -56,9 +58,9 @@
     <object>objects\Player1_hitboxes</object>
     <object>objects\Player1_hurtboxes</object>
     <object>objects\Player2_hurtboxes</object>
-    <object>objects\healthbar</object>
     <object>objects\camera</object>
     <object>objects\UI</object>
+    <object>objects\hppointer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

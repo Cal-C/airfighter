@@ -34,13 +34,33 @@
                 player.state = 4;
                 player.image_speed = 1/7;
             }
-        global.healthnum = global.healthnum-hitbox.player.currentdmg*hitbox.player.healthmulti
+        global.healthnum = global.healthnum-hitbox.player.currentdmg*hitbox.player.healthmulti;
+        if(global.healthnum &gt; 100 or global.healthnum &lt; 0){
+            if(global.deathsdoor){ 
+                with player{
+                    instance_destroy();
+                }
+             }
+             
+            if(!global.deathsdoor){ global.deathsdoor = true; }
+        }
+        if(0 &lt; global.healthnum &lt; 100){
+            global.healthnum = false;
+        }
+        
         global.healthnum = min(global.healthnum,100);
         global.healthnum = max(global.healthnum,0);
+        
         hitbox.player.currentdmg = hitbox.player.currentdmg - 5;
         hitbox.player.currentdmg = max(hitbox.player.currentdmg,1);
         hitbox.player.xspd = hitbox.player.xspd/2;
         hitbox.player.yspd = hitbox.player.yspd/2;
+        //knockback
+        totalknb = hitbox.player.currentdmg*hitbox.player.currentdmg;
+        player.xspd = totalknb * ((player.x-hitbox.x)/(abs(player.x-hitbox.player.x)+abs(player.y-hitbox.player.y)));
+        player.yspd = totalknb * ((player.y-hitbox.y)/(abs(player.x-hitbox.player.x)+abs(player.y-hitbox.player.y)));
+        player.xaccel = 0;
+        player.yaccel = 0;        
         }
     }
     

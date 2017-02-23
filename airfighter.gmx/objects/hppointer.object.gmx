@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.healthnum = 50
+            <string>global.healthnum = 50;
+global.deathsdoor = false;
 </string>
           </argument>
         </arguments>
@@ -48,9 +49,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>event_inherited();
+x = view_xview[0]+ ((global.healthnum/100)*(view_wview[0]-200*(view_wview[0])/1024)) + 100 *(view_wview[0]/1024);
 
-x = view_xview[0] + 1024/2*(view_wview[0]/1024);
 </string>
           </argument>
         </arguments>

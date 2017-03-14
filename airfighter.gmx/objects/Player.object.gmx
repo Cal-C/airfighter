@@ -26,7 +26,29 @@
           <argument>
             <kind>1</kind>
             <string>loopanimation = false;
-state = 1; //1-idle 2-attacking 3-hitstun
+state = 1; //1-idle 2-attacking 3-dashing 4-hitstun
+
+decell = .05
+
+xspd = 0;
+yspd = 0;
+
+xaccel = 0;
+yaccel = 0;
+
+maxspeed = 5;
+horzvertmovedebuf = 1 //the higher the number the faster characters will move when they're going up and down
+
+currentdmg = 0; //damage of the current move
+
+if(character == 1){
+    dashspeed = 10;
+}
+
+if(character == 2){
+    dashspeed = 10;
+}
+
 
 </string>
           </argument>
@@ -53,61 +75,109 @@ state = 1; //1-idle 2-attacking 3-hitstun
             <string>///Oku's stand is the only girl we're getting either way
 //MOVEMENT KEYBINDS--------------------------------------------------------------------------------------------------
 if (state == 1){ // checking state so if character is attacking or in hitstun they cant move
+    maxspeed = 5;
     if keyboard_check(leftkey) //move left
     {
         image_xscale = -1;
-        motion_add(180, 0.5);
-        if(speed &gt; 5) speed = 5; 
+        xaccel = -.5; 
     }
     
     if keyboard_check(rightkey) //move right
     {
         image_xscale = 1;
-        motion_add(0, 0.5);
-        if(speed &gt; 5) speed = 5;   
+        xaccel = .5;   
     }
     
     if keyboard_check(upkey) //move up
     {
-        motion_add(90, 0.5);
-        if(speed &gt; 5) speed = 5;   
+        yaccel = -.5;   
     }
     
     if keyboard_check(downkey)//move down
     {
-        motion_add(90, -0.5);
-        if(speed &gt; 5) speed = 5;   
+        yaccel = .5;   
+    }
+    if (!keyboard_check(leftkey) and !keyboard_check(rightkey) and !keyboard_check(downkey) and !keyboard_check(upkey)){
+    
+        yaccel = 0;
+        xaccel = 0;
     }
     if(character == 1){
         sprite_index=Death_idlewithscythe;
     }
-    if(character == 2 &amp;&amp; speed &lt;= 1){
+    if(character == 2 &amp;&amp; abs(xspd)+abs(yspd) &lt;= 1){
         sprite_index=HevArty_Idle
     }
-    if(character == 2 &amp;&amp; speed &gt; 1){
+    if(character == 2 &amp;&amp; abs(xspd)+abs(yspd) &gt; 1){
         sprite_index=HevArty_Move;
+    }
+    //making it so the player dosen't move twice as fast when you're moving vertically and horizontally at the same time
+    if(keyboard_check(downkey) or keyboard_check(upkey)){
+        if(keyboard_check(leftkey) or keyboard_check(rightkey)){
+            maxspeed = maxspeed*horzvertmovedebuf;
+        }
     }
 }
 
-speed = max(speed - 0.05, 0); //Add decelleration to player
+//Adding decelleration to player
+
+if(state == 1){ decell = .05; }
+if(state == 2){ decell = .1; }
+if(state == 3){ decell = 0; }
+if(state == 4){ decell = .05; }
+if(xspd &gt; 0){
+    xspd = max(xspd - decell, 0); 
+}
+if(xspd &lt; 0){
+    xspd = min(xspd + decell, 0); 
+}
+if(yspd &gt; 0){
+    yspd = max(yspd - decell, 0); 
+}
+if(yspd &lt; 0){
+    yspd = min(yspd + decell, 0); 
+}
+
+
+//DASHING
+if (state == 1){
+    if( keyboard_check(dashkey) ){
+        if character == 1{
+        sprite_index = Death_dashwscythe;
+        image_speed = 1/2;}
+        if character == 2{
+        sprite_index = HevArty_Dash;
+        image_speed = 1/3;}
+            yaccel = yaccel*2;
+            xaccel = xaccel*2;
+            maxspeed = dashspeed;
+            state = 3;
+            
+            
+            //making it so the player dosen't move twice as fast when you're moving vertically and horizontally at the same time
+            if(keyboard_check(downkey) or keyboard_check(upkey)){
+                if(keyboard_check(leftkey) or keyboard_check(rightkey)){
+                    maxspeed = maxspeed*horzvertmovedebuf;
+            }
+        }
+    }
+}
+
+
+
 
 //ATTACK KEYBINDS-----------------------------------------------------------------------------------------------------
 if(character == 1){
     if(state == 1 &amp; keyboard_check_pressed(basicattackkey)){
         state = 2
         image_speed = 1/3;
-        if(state == 2)
-        {
-            speed = max(speed - 2, 0);
-        }
+
         if(keyboard_check(rightkey)){
             sprite_index = Death_fattack;
-            //speed = 10; //DAAAAAASH like a fast boii
         }
         
         if(keyboard_check(leftkey)){
             sprite_index = Death_fattack;
-            //speed = 10; //DAAAAAASH like a fast boii
         }
         if(keyboard_check(upkey)){
             sprite_index = Death_uattack;
@@ -117,44 +187,42 @@ if(character == 1){
         }
         if(!keyboard_check(upkey) and !keyboard_check(downkey) &amp;&amp; !keyboard_check(leftkey) &amp;&amp; !keyboard_check(rightkey)){
             sprite_index = Death_nattack;
+            currentdmg = 20;
         }
     
     }   
 }
+
 if(character == 2){
     if(state == 1 &amp;&amp; keyboard_check_pressed(basicattackkey)){
-        state = 2;
+        
         image_speed = 1/3;
-        if(state == 2)
-        {
-            speed = max(speed - 2, 0);
-        }
         if(keyboard_check(rightkey)){
             sprite_index = HevArty_fattack;
-            //speed = 10; //DAAAAAASH like a fast boii
+            if(state == 1){
+            currentdmg = 10;}
         }
         
         if(keyboard_check(leftkey)){
             sprite_index = HevArty_fattack;
-            //speed = 10; //DAAAAAASH like a fast boii
+            if(state == 1){
+            currentdmg = 10;}
         }
         if(keyboard_check(upkey)){
-            //sprite_index = Death_uattack;
+            sprite_index = HevArty_uattack;
+
         }
         if(keyboard_check(downkey)){
-            //sprite_index = Death_dattack;
+            sprite_index = HevArty_dattack
         }
         if(!keyboard_check(upkey) &amp;&amp; !keyboard_check(downkey) &amp;&amp; !keyboard_check(leftkey) &amp;&amp; !keyboard_check(rightkey)){
             //sprite_index = Death_nattack;
         }
-    
-    
-     
-    }
-    
+        state = 2;
+    }   
 }
 
-//makes ora loop if atack key is held
+//makes ora loop if attack key is held
 if(sprite_index == HevArty_fattack &amp;&amp; keyboard_check(basicattackkey)){
     loopanimation = true; 
 }
@@ -162,6 +230,27 @@ else{
     loopanimation = false;
 }
 
+if(state == 2){
+    xaccel = 0;
+    yaccel = 0;
+}
+
+//updating pos
+xspd = xspd + xaccel;
+yspd = yspd + yaccel;
+
+xspd = min(maxspeed,xspd);
+xspd = max(-maxspeed,xspd);
+yspd = min(maxspeed,yspd);
+yspd = max(-maxspeed,yspd);
+
+x = x + xspd;
+y = y + yspd;
+
+x = max(x,0+64);
+x = min(x,rm_test.room_width-64);
+y = max(y,0+64);
+y = min(y,rm_test.room_height-50-64);
 
 
 if(!loopanimation){
@@ -169,6 +258,12 @@ if(!loopanimation){
     if(image_index == image_number -1){
         image_speed = 0;
         image_index = image_number - 1;
+        if(state == 3){
+        xspd = min(xspd,5);
+        xspd = max(xspd,-5);
+        yspd = min(yspd,5);
+        yspd = max(yspd,-5);
+        }
         state = 1;
         if(character == 1){
             sprite_index = Death_idlewithscythe;}
@@ -177,63 +272,33 @@ if(!loopanimation){
         }
 }
 
+//HitboxTimeMyDudez---------------------------------------------------------------------
+hitboxobject.x = x;
+hitboxobject.y = y;
+hitboxobject.image_xscale = image_xscale;
+if(state == 1){
+    hitboxobject.sprite_index = nothingsprite;
+}
+if(state == 2){
+    if(character == 2){
+        if(sprite_index == HevArty_fattack){
+            hitboxobject.sprite_index = HevArty_fattackHB;
+        }
+    }
+    if(character == 1){
+        if(sprite_index == Death_nattack){
+            hitboxobject.sprite_index = Death_nattackhb;
+            hitboxobject.image_speed = image_speed;
+        }
+    }
+}
+
+//HURTBOXES---------------------------------------------------------
+hurtboxobject.x = x;
+hurtboxobject.y = y;
+hurtboxobject.image_xscale = image_xscale;
 
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="7">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///PREVENTS ANIMATION LOOPS
-/*
-if(loopanimation != true){
-image_speed = 0;
-image_index = image_number - 1;
-state = 1;
-if(character == 1){
-    sprite_index = Death_idlewithscythe;}
-if(character == 2){
-    sprite_index = HevArty_Idle}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>112</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_wrap</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>4</kind>
-            <string>2</string>
           </argument>
         </arguments>
       </action>

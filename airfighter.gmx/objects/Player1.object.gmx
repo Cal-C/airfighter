@@ -34,7 +34,7 @@ dashkey = ord("X");
 specialkey = ord("C");
 parrykey = ord("V");
 character = 1;
-event_inherited();
+event_inherited()
 </string>
           </argument>
         </arguments>

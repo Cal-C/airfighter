@@ -27,43 +27,69 @@
             <kind>1</kind>
             <string>if(place_meeting(x,y,hitboxes)){
     hitbox = instance_place(x,y,hitboxes) //making a var for the hitbox that just colided with the player
-    if( player != hitbox.player ){
+        if( player != hitbox.player ){
         if(player.state != 4){
+            global.hypenum = global.hypenum + 5;
+            //sends the player to hitstun
             if(player.character == 1){
-                player.sprite_index = Death_hitstunwithscythe;
+            if(player.hasscythe){player.sprite_index = Death_hitstunwithscythe;}
+            if(!player.hassctyhe){player.sprite_index = Death_hitstunwithoutscythe;}
+                player.state = 4;
+                player.image_speed = 1/7;
+                show_debug_message((hitbox.player.currentdmg));
+            }
+            if(player.character == 2){
+                player.sprite_index = HevArty_hitstun;
                 player.state = 4;
                 player.image_speed = 1/7;
             }
-        global.healthnum = global.healthnum-hitbox.player.currentdmg*hitbox.player.healthmulti;
+            
+        //dmg calculation
+        global.healthnum = global.healthnum + (hitbox.player.currentdmg*hitbox.player.healthmulti*global.hypemulti);
+        //checking for death's door
         if(global.healthnum &gt; 100 or global.healthnum &lt; 0){
             if(global.deathsdoor){ 
                 with player{
-                    instance_destroy();
+                    //instance_destroy();
+                    draw_set_color(c_green);
                 }
              }
              
-            if(!global.deathsdoor){ global.deathsdoor = true; }
+            if(!global.deathsdoor){ 
+            global.deathsdoor = true; 
+            draw_set_color(c_red);
+            }
+            
         }
-        if(0 &lt; global.healthnum &lt; 100){
-            global.healthnum = false;
+        
+        if(0 &lt; global.healthnum and global.healthnum &lt; 100){
+            global.deathsdooor = false;
+            draw_set_color(c_blue);
         }
         
         global.healthnum = min(global.healthnum,100);
         global.healthnum = max(global.healthnum,0);
         
-        hitbox.player.currentdmg = hitbox.player.currentdmg - 5;
-        hitbox.player.currentdmg = max(hitbox.player.currentdmg,1);
+        //making the player attacking do less damage and move more slowly
+       // hitbox.player. = hitbox.player.currentdmg - 5;
+        //hitbox.player.currentdmg = max(hitbox.player.currentdmg,1);
         hitbox.player.xspd = hitbox.player.xspd/2;
         hitbox.player.yspd = hitbox.player.yspd/2;
+        
         //knockback
-        totalknb = hitbox.player.currentdmg*hitbox.player.currentdmg;
+        totalknb = hitbox.player.currentdmg*hitbox.player.currentdmg*global.hypemulti;
         player.xspd = totalknb * ((player.x-hitbox.x)/(abs(player.x-hitbox.player.x)+abs(player.y-hitbox.player.y)));
         player.yspd = totalknb * ((player.y-hitbox.y)/(abs(player.x-hitbox.player.x)+abs(player.y-hitbox.player.y)));
         player.xaccel = 0;
-        player.yaccel = 0;        
+        player.yaccel = 0;
+        if(player.xspd &lt; 0){
+            player.image_xscale = 1;
         }
-    }
-    
+        if(player.xspd &gt; 0){
+            player.image_xscale = -1;
+        }        
+        }
+    }    
 }
 </string>
           </argument>

@@ -9,26 +9,29 @@
     <sprite>sprites\nothingsprite</sprite>
     <sprites name="Death">
       <sprites name="Visible">
+        <sprite>sprites\Death_special</sprite>
         <sprite>sprites\Death_uattack</sprite>
         <sprite>sprites\Death_dattack</sprite>
         <sprite>sprites\Death_fattack</sprite>
         <sprite>sprites\Death_noscytheattack</sprite>
+        <sprite>sprites\Death_hitstunwithoutscythe</sprite>
         <sprite>sprites\Death_nattack</sprite>
-        <sprite>sprites\Death_nattackhb</sprite>
         <sprite>sprites\Death_idlewithscythe</sprite>
         <sprite>sprites\Death_idlenoscythe</sprite>
         <sprite>sprites\Death_hitstunwithscythe</sprite>
-        <sprite>sprites\Death_hitstunwithoutscythe</sprite>
         <sprite>sprites\Death_dashwscythe</sprite>
         <sprite>sprites\Death_dashwoscythe</sprite>
+        <sprite>sprites\Death_Scythe</sprite>
       </sprites>
       <sprites name="invisible">
         <sprite>sprites\Death_idlewscytheHurtBx</sprite>
+        <sprite>sprites\Death_nattackhb</sprite>
       </sprites>
     </sprites>
     <sprites name="Heavy_Arty">
       <sprites name="Visible">
         <sprite>sprites\HevArty_Idle</sprite>
+        <sprite>sprites\HevArty_hitstun</sprite>
         <sprite>sprites\HevArty_Move</sprite>
         <sprite>sprites\HevArty_nattack</sprite>
         <sprite>sprites\HevArty_fattack</sprite>
@@ -49,18 +52,29 @@
     <script>scripts\scr_test.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\Player</object>
-    <object>objects\Player1</object>
-    <object>objects\hitboxes</object>
-    <object>objects\Player2</object>
-    <object>objects\hurtboxes</object>
-    <object>objects\Player2_hitboxes</object>
-    <object>objects\Player1_hitboxes</object>
-    <object>objects\Player1_hurtboxes</object>
-    <object>objects\Player2_hurtboxes</object>
-    <object>objects\camera</object>
-    <object>objects\UI</object>
-    <object>objects\hppointer</object>
+    <objects name="UI elements">
+      <object>objects\camera</object>
+      <object>objects\UI</object>
+      <object>objects\healthnumb</object>
+      <object>objects\hypenumb</object>
+      <object>objects\hppointer</object>
+    </objects>
+    <objects name="playerobjects">
+      <objects name="parents">
+        <object>objects\Player</object>
+        <object>objects\hitboxes</object>
+        <object>objects\hurtboxes</object>
+        <object>objects\scythe</object>
+      </objects>
+      <objects name="children">
+        <object>objects\Player2_hurtboxes</object>
+        <object>objects\Player1_hitboxes</object>
+        <object>objects\Player2_hitboxes</object>
+        <object>objects\Player1</object>
+        <object>objects\Player1_hurtboxes</object>
+        <object>objects\Player2</object>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

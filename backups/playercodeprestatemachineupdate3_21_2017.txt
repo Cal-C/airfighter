@@ -1,0 +1,226 @@
+///Oku's stand is the only girl we're getting either way
+//MOVEMENT KEYBINDS--------------------------------------------------------------------------------------------------
+if (state == 1){ // checking state so if character is attacking or in hitstun they cant move
+    maxspeed = 5;
+    if keyboard_check(leftkey) //move left
+    {
+        image_xscale = -1;
+        xaccel = -.5; 
+    }
+    
+    if keyboard_check(rightkey) //move right
+    {
+        image_xscale = 1;
+        xaccel = .5;   
+    }
+    
+    if keyboard_check(upkey) //move up
+    {
+        yaccel = -.5;   
+    }
+    
+    if keyboard_check(downkey)//move down
+    {
+        yaccel = .5;   
+    }
+    if (!keyboard_check(leftkey) and !keyboard_check(rightkey) and !keyboard_check(downkey) and !keyboard_check(upkey)){
+    
+        yaccel = 0;
+        xaccel = 0;
+    }
+    if(character == 1){
+        sprite_index=Death_idlewithscythe;
+    }
+    if(character == 2 && abs(xspd)+abs(yspd) <= 1){
+        sprite_index=HevArty_Idle
+    }
+    if(character == 2 && abs(xspd)+abs(yspd) > 1){
+        sprite_index=HevArty_Move;
+    }
+    //making it so the player dosen't move twice as fast when you're moving vertically and horizontally at the same time
+    if(keyboard_check(downkey) or keyboard_check(upkey)){
+        if(keyboard_check(leftkey) or keyboard_check(rightkey)){
+            maxspeed = maxspeed*horzvertmovedebuf;
+        }
+    }
+}
+
+//Adding decelleration to player
+
+if(state == 1){ decell = .05; }
+if(state == 2){ decell = .1; }
+if(state == 3){ decell = 0; }
+if(state == 4){ decell = .05; }
+if(xspd > 0){
+    xspd = max(xspd - decell, 0); 
+}
+if(xspd < 0){
+    xspd = min(xspd + decell, 0); 
+}
+if(yspd > 0){
+    yspd = max(yspd - decell, 0); 
+}
+if(yspd < 0){
+    yspd = min(yspd + decell, 0); 
+}
+
+
+//DASHING
+if (state == 1){
+    if( keyboard_check(dashkey) ){
+        if character == 1{
+        sprite_index = Death_dashwscythe;
+        image_speed = 1/2;}
+        if character == 2{
+        sprite_index = HevArty_Dash;
+        image_speed = 1/3;}
+            yaccel = yaccel*2;
+            xaccel = xaccel*2;
+            maxspeed = dashspeed;
+            state = 3;
+            
+            
+            //making it so the player dosen't move twice as fast when you're moving vertically and horizontally at the same time
+            if(keyboard_check(downkey) or keyboard_check(upkey)){
+                if(keyboard_check(leftkey) or keyboard_check(rightkey)){
+                    maxspeed = maxspeed*horzvertmovedebuf;
+            }
+        }
+    }
+}
+
+
+
+
+//ATTACK KEYBINDS-----------------------------------------------------------------------------------------------------
+if(character == 1){
+    if(state == 1 & keyboard_check_pressed(basicattackkey)){
+        state = 2
+        image_speed = 1/3;
+
+        if(keyboard_check(rightkey)){
+            sprite_index = Death_fattack;
+        }
+        
+        if(keyboard_check(leftkey)){
+            sprite_index = Death_fattack;
+        }
+        if(keyboard_check(upkey)){
+            sprite_index = Death_uattack;
+        }
+        if(keyboard_check(downkey)){
+            sprite_index = Death_dattack;
+        }
+        if(!keyboard_check(upkey) and !keyboard_check(downkey) && !keyboard_check(leftkey) && !keyboard_check(rightkey)){
+            sprite_index = Death_nattack;
+            currentdmg = 20;
+        }
+    
+    }   
+}
+
+if(character == 2){
+    if(state == 1 && keyboard_check_pressed(basicattackkey)){
+        
+        image_speed = 1/3;
+        if(keyboard_check(rightkey)){
+            sprite_index = HevArty_fattack;
+            if(state == 1){
+            currentdmg = 10;}
+        }
+        
+        if(keyboard_check(leftkey)){
+            sprite_index = HevArty_fattack;
+            if(state == 1){
+            currentdmg = 10;}
+        }
+        if(keyboard_check(upkey)){
+            sprite_index = HevArty_uattack;
+
+        }
+        if(keyboard_check(downkey)){
+            sprite_index = HevArty_dattack
+        }
+        if(!keyboard_check(upkey) && !keyboard_check(downkey) && !keyboard_check(leftkey) && !keyboard_check(rightkey)){
+            //sprite_index = Death_nattack;
+        }
+        state = 2;
+    }   
+}
+
+//makes ora loop if atack key is held
+if(sprite_index == HevArty_fattack && keyboard_check(basicattackkey)){
+    loopanimation = true; 
+}
+else{
+    loopanimation = false;
+}
+
+if(state == 2){
+    xaccel = 0;
+    yaccel = 0;
+}
+
+//updating pos
+xspd = xspd + xaccel;
+yspd = yspd + yaccel;
+
+xspd = min(maxspeed,xspd);
+xspd = max(-maxspeed,xspd);
+yspd = min(maxspeed,yspd);
+yspd = max(-maxspeed,yspd);
+
+x = x + xspd;
+y = y + yspd;
+
+x = max(x,0+64);
+x = min(x,rm_test.room_width-64);
+y = max(y,0+64);
+y = min(y,rm_test.room_height-50-64);
+
+
+if(!loopanimation){
+///PREVENTS ANIMATION LOOPS
+    if(image_index == image_number -1){
+        image_speed = 0;
+        image_index = image_number - 1;
+        if(state == 3){
+        xspd = min(xspd,5);
+        xspd = max(xspd,-5);
+        yspd = min(yspd,5);
+        yspd = max(yspd,-5);
+        }
+        state = 1;
+        if(character == 1){
+            sprite_index = Death_idlewithscythe;}
+        if(character == 2){
+            sprite_index = HevArty_Idle}
+        }
+}
+
+//HitboxTimeMyDudez---------------------------------------------------------------------
+hitboxobject.x = x;
+hitboxobject.y = y;
+hitboxobject.image_xscale = image_xscale;
+if(state == 1){
+    hitboxobject.sprite_index = nothingsprite;
+}
+if(state == 2){
+    if(character == 2){
+        if(sprite_index == HevArty_fattack){
+            hitboxobject.sprite_index = HevArty_fattackHB;
+        }
+    }
+    if(character == 1){
+        if(sprite_index == Death_nattack){
+            hitboxobject.sprite_index = Death_nattackhb;
+            hitboxobject.image_speed = image_speed;
+        }
+    }
+}
+
+//HURTBOXES---------------------------------------------------------
+hurtboxobject.x = x;
+hurtboxobject.y = y;
+hurtboxobject.image_xscale = image_xscale;
+

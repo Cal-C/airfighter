@@ -214,7 +214,7 @@ if(character == 2){
     }   
 }
 
-//makes ora loop if atack key is held
+//makes ora loop if attack key is held
 if(sprite_index == HevArty_fattack &amp;&amp; keyboard_check(basicattackkey)){
     loopanimation = true; 
 }
@@ -268,7 +268,7 @@ if(state == 2){
     }
 }
 
-//HURTBOXES niBBA---------------------------------------------------------
+//HURTBOXES B---------------------------------------------------------
 hurtboxobject.x = x;
 hurtboxobject.y = y;
 hurtboxobject.image_xscale = image_xscale;
